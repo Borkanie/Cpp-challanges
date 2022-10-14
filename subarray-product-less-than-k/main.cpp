@@ -1,33 +1,42 @@
 // Challange source: https://leetcode.com/problems/subarray-product-less-than-k/
+// Note I read it wrong i though it just had to be any combination of elements in array not necessarry a subarray
+
 #include <iostream>
 #include <vector>
 
 using namespace std;
-
+vector<int> current;
+int prod=1;
+void printVector(const vector<int> vector)
+{
+    cout << " [";
+    for (int i : vector)
+    {
+        cout << i << " ";
+    }
+    cout << "]" << endl;
+}
 int numSubarrayProductLessThanK(vector<int> &nums, int k)
 {
-    int value = 0;
-    if( nums.size() == 0){
+    if (nums.size() == 0)
+    {
         return 0;
     }
-    if( nums.at(0) < k){
-        cout << nums.at(0) << " ";
-    }
-    for (int i = 1; i < nums.size(); i++)
+    int iter = 0;
+    while (nums.begin() + iter != nums.end() && k-prod*nums.at(iter) > 0)
     {
-        vector<int> newVector(nums.begin() + i, nums.begin() + nums.size());
-        int toAdd = numSubarrayProductLessThanK(newVector, k);
-        if (value + toAdd < k)
-        {
-            cout << newVector.at(0) << "  ";
-            value += toAdd;
-        }
-        else
-        {
-            cout << endl;            
-        }
-        return value;
+        prod*=nums.at(iter);
+        current.push_back(nums.at(iter));
+        cout<< "prod=" << prod;
+        printVector(current);
+        iter++;                
+        vector<int> newVector(nums.begin() + iter, nums.end());
+        numSubarrayProductLessThanK(newVector, k);
+        current.pop_back();
+        prod/=nums.at(iter-1);        
     }
+    
+    return 0;
 }
 
 int main()
