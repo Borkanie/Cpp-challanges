@@ -29,6 +29,11 @@ ofstream myfile;
     myfile << x;                               \
     myfile.close();
 #endif
+
+/* This method will be used in order to allocate a matrix for a vector of matrices.
+The array numberOfElementsOnLines is an array containing an integer for each line representing the number of elements on that line.
+This method allows for array of arrays of different lengths to be created.
+*/
 int **allocateMatrix(int *numberOfElementsOnLines)
 {
     const int lines = sizeof(numberOfElementsOnLines) / sizeof(int) + 1;
@@ -40,6 +45,9 @@ int **allocateMatrix(int *numberOfElementsOnLines)
     return matrix;
 }
 
+/* This emthod will free up memory used by a matrix.
+We need pointer to first element and thje number of lines.
+*/
 void freeMatrix(int **matrix, int lines)
 {
     for (int i = 0; i < lines; i++)
@@ -49,6 +57,10 @@ void freeMatrix(int **matrix, int lines)
     free(matrix);
 }
 
+/* This method will create an array of arrays from a single array with a given structure.
+listOfElements is the lsit of input values that will be added in the arrays. The order will be the same.
+elementOnLines is the structure of the resulting array of arrays.
+*/
 int **getInputMatrix(int *listOfElements, int *elementOnLines)
 {
     int **matrix = allocateMatrix(elementOnLines);
@@ -64,6 +76,10 @@ int **getInputMatrix(int *listOfElements, int *elementOnLines)
     return matrix;
 }
 
+/* This method prints out an array of arrays of a given structure.
+The structure needs to be passed in the parameter elementsOnLines.
+This parameter is an array of integers representing the number of elements in each array of the arrays.
+*/
 void printMatrix(int **matrix, int *elementsOnLines)
 {
     for (int i = 0; i <= sizeof(elementsOnLines) / sizeof(int); i++)
@@ -80,6 +96,10 @@ void printMatrix(int **matrix, int *elementsOnLines)
     LOG(endl);
 }
 
+/* This method orders the elemnts from the array of array in a single array by ascending order.
+The structure needs to be passed in the parameter elementsOnLines.
+This parameter is an array of integers representing the number of elements in each array of the arrays.
+*/
 int *orderedList(int **matrix, int *elementsOnLines)
 {
     const int numberOfLines = sizeof(elementsOnLines) / sizeof(int) + 1;
