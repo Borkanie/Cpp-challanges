@@ -1,54 +1,54 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <string.h>
 using namespace std;
 
-
-class Solution {
+class Solution
+{
 public:
-    /* Given an parameter (s) and a pattern (p), implement wildcard pattern matching with support for '?' and '*' where:
-    *    '?' Matches any single character.
-    *    '*' Matches any sequence of characters (including the empty sequence).
-    * The matching should cover the entire input string (not partial).
-    */
-    bool isMatch(string s, string p) {
-        bool anycharWorks=p[0]=='*';
-        if(p.length()==1 && anycharWorks){
-                return true;
-            }
-        int index=0;
-        
-        for(int i=0;i<p.length();i++){
-            if(anycharWorks){
-                while(index<s.length()){
-                    if(s[index]==p[i]){
-                        continue;
-                    }
-                }
-                return false;
-            }
-            if(p[i]=='*'){
-                anycharWorks = true;
-                continue;
-            }
+      bool isMatch(const char *s, const char *p) {
+        const char* star=NULL;
+        const char* ss=s;
+        while (*s){
+            //advancing both pointers when (both characters match) or ('?' found in pattern)
+            //note that *p will not advance beyond its length 
+            if ((*p=='?')||(*p==*s)){s++;p++;continue;} 
+
+            // * found in pattern, track index of *, only advancing pattern pointer 
+            if (*p=='*'){star=p++; ss=s;continue;} 
+
+            //current characters didn't match, last pattern pointer was *, current pattern pointer is not *
+            //only advancing pattern pointer
+            if (star){ p = star+1; s=++ss;continue;} 
+
+           //current pattern pointer is not star, last patter pointer was not *
+           //characters do not match
+            return false;
         }
-        return true;
+
+       //check for remaining characters in pattern
+        while (*p=='*'){p++;}
+
+        return !*p;  
+    }
+    bool isMatch(string s, string p)
+    {
+        return isMatch(s.c_str(),p.c_str());
+       
     }
 };
 
 int main()
 {
     Solution solution;
-    string s;
-    cout << "Input the first string:"<<endl;
-    cin>>s;
-    cout<<endl;
-    cout << "Input the filter:"<<endl;
-    string p;
-    cin>>p;
-    cout<<endl;
-    cout << "The reuslt is:"<<solution.isMatch(s,p)<<endl;
-    char in;
-    cin >> in;
+    string s,p;
+    cout << "Input the first string:" << endl;
+    cin >> s;
+    cout << endl;
+    cout << "Input the filter:" << endl;
+    cin >> p;
+    cout  << endl;
+    cout << "The reuslt is:" << solution.isMatch(s, p) << endl;
     return 0;
 }
