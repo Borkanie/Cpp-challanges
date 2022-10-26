@@ -41,3 +41,8 @@ Challange source:
 ## Self printing program
 
 A program that when run display's himself. It was easy sinve the executable is a different file and it's done after compilation.
+
+## Regular expression matching
+
+Challange source:
+> https://leetcode.com/problems/regular-expression-matching/
