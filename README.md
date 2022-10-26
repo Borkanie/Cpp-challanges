@@ -46,3 +46,11 @@ A program that when run display's himself. It was easy sinve the executable is a
 
 Challange source:
 > https://leetcode.com/problems/regular-expression-matching/
+
+## Contianer with the most water
+
+The source problem can be found here
+> https://leetcode.com/problems/container-with-most-water/submissions/
+
+Great solution that I copied from:
+> https://leetcode.com/problems/container-with-most-water/discuss/1915172/JavaC%2B%2B-Easiest-Explanations
