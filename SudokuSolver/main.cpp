@@ -1,4 +1,4 @@
-// sourc eproblem https://leetcode.com/problems/sudoku-solver/
+// source problem https://leetcode.com/problems/sudoku-solver/
 #include <iostream>
 #include <vector>
 

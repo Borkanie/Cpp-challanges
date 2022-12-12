@@ -54,3 +54,13 @@ The source problem can be found here
 
 Great solution that I copied from:
 > https://leetcode.com/problems/container-with-most-water/discuss/1915172/JavaC%2B%2B-Easiest-Explanations
+
+
+## Valid Number
+
+
+>https://leetcode.com/problems/valid-number/
+
+## Making A Large Island
+
+https://leetcode.com/problems/making-a-large-island/
